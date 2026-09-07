@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Vault：本地优先的 AI 创作者工作台</title>
+    <meta
+      name="description"
+      content="AI Vault 统一管理技能、提示词、MCP、ComfyUI 工作流、模型与 API 供应商，一键分发到 36+ Agent 的技能目录。本地优先，数据始终留在你的电脑上。"
+    />
+    <meta
+      name="keywords"
+      content="AI Vault, AI 工作台, 本地优先, Agent, Claude Code, 技能管理, Skill, MCP, 提示词, ComfyUI, 模型管理, llama.cpp"
+    />
+    <meta name="author" content="宝藏二哥AIA" />
+    <meta name="application-name" content="AI Vault" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#202022" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f8" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="https://ergeaia.github.io/aivault-site/" />
+    <link rel="icon" type="image/svg+xml" href="brand/aivault-logo-compact.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AI Vault" />
+    <meta property="og:title" content="AI Vault：本地优先的 AI 创作者工作台" />
+    <meta
+      property="og:description"
+      content="统一管理技能、提示词、MCP、工作流、模型与 API 供应商，一键分发到 36+ Agent。数据始终留在你的电脑上。"
+    />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AI Vault：本地优先的 AI 创作者工作台" />
+    <meta
+      name="twitter:description"
+      content="统一管理技能、提示词、MCP、工作流、模型与 API 供应商，一键分发到 36+ Agent。数据始终留在你的电脑上。"
+    />
+    <script type="module" crossorigin src="/aivault-site/assets/index-DTyF0XJ9.js"></script>
+    <link rel="stylesheet" crossorigin href="/aivault-site/assets/index-Coxt_2wp.css">
+  </head>
+  <body>
+    <script>
+      // 首帧主题：手动选择优先，其次跟随系统；dark 为默认（:root 即暗色 token）
+      ;(function () {
+        try {
+          var t = localStorage.getItem('aivault-site-theme')
+          if (t === 'light' || (t !== 'dark' && matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.dataset.theme = 'light'
+          }
+        } catch (e) {}
+      })()
+    </script>
+    <div id="root"></div>
+    <noscript>
+      <main style="max-width: 40rem; margin: 4rem auto; font-family: sans-serif; line-height: 1.7">
+        <h1>AI Vault：本地优先的 AI 创作者工作台</h1>
+        <p>
+          AI Vault 统一管理技能、提示词、MCP、ComfyUI 工作流、模型与 API
+          供应商，一键分发到 36+ Agent 的技能目录。本地优先，数据始终留在你的电脑上。
+        </p>
+        <p>
+          <a href="https://github.com/ErgeAIA/updates-dist/releases/latest">GitHub 下载</a>
+          ·
+          <a href="https://gitee.com/ergeaia/updates-dist/releases">Gitee 下载</a>
+        </p>
+      </main>
+    </noscript>
+  </body>
+</html>

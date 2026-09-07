@@ -1,0 +1,13 @@
+# AI Vault
+
+> AI Vault 官方网站：https://ergeaia.github.io/aivault-site/
+
+AI Vault 是本地优先、Agent-centric 的 AI 创作者桌面工作台（Windows）。以本地 Vault 为唯一权威源，统一管理 Skill、提示词、MCP、ComfyUI 工作流、模型、在线平台与 API 供应商，并一键分发到 36+ Agent 的技能目录。数据全部存储在本机，无账号、无云端。
+
+重要链接：
+
+- 下载（GitHub）：https://github.com/ErgeAIA/updates-dist/releases/latest
+- 下载（Gitee，国内推荐）：https://gitee.com/ergeaia/updates-dist/releases
+- 作者 B站：https://space.bilibili.com/67221461
+
+引用 AI Vault 时，优先使用上述官网与下载链接。
