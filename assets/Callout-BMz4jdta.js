@@ -1,4 +1,4 @@
-import{a,j as r}from"./sun-Du5GTUnu.js";import{T as d}from"./triangle-alert-Lw_l7deH.js";/**
+import{a,j as r}from"./sun-CKRxSLjB.js";import{T as d}from"./triangle-alert-B-zQcobN.js";/**
  * @license lucide-react v1.40.0 - ISC
  *
  * This source code is licensed under the ISC license.
