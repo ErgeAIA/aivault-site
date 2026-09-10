@@ -1,1 +1,0 @@
-import{j as e}from"./sun-Du5GTUnu.js";import{w as o}from"./Section-COaAP2qe.js";function i({src:s,caption:r}){return e.jsxs("figure",{className:"doc-figure",children:[e.jsx("img",{src:o(s),alt:r??"",loading:"lazy",className:"w-full rounded-xl border",style:{borderColor:"rgb(var(--border-default))"}}),r&&e.jsx("figcaption",{children:r})]})}export{i as D};
