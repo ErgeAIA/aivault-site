@@ -1,1 +1,0 @@
-import{j as s}from"./lib-EnSj88TV.js";function t({id:e,title:i,children:n}){return s.jsxs("section",{id:e,children:[s.jsx("h2",{children:i}),s.jsx("div",{className:"doc-section",children:n})]})}export{t as S};
