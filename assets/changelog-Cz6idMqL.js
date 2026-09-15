@@ -1,14 +1,28 @@
-import{u as g,j as n}from"./lib-kqLcizX3.js";import{D as p,g as d,m as f}from"./DocsLayout-CjO2fxza.js";import{C as x}from"./Callout-CqUJaPuB.js";const m=`# Changelog\r
+import{u as p,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./DocsLayout-CjO2fxza.js";import{C as x}from"./Callout-CqUJaPuB.js";const m=`# Changelog\r
 \r
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。\r
 \r
 ## [Unreleased]\r
+\r
+### 新增\r
+\r
+（待下一版）\r
+\r
+## [v0.2.3] - 2026-09-15\r
+\r
+### 新增\r
+\r
+- **本地引擎配置参数搜索**：「新建 / 编辑配置」窗口顶部新增参数搜索框，可在近 200 个参数中按名称、命令行参数名或下拉选项值查找（如输入 mtp 可定位「推测类型」的 draft-mtp 选项）；支持「模糊 / 精确」两种匹配模式，结果下拉列出所属分组，点击后自动切到对应页签、滚动定位到该参数并短暂高亮。搜索只匹配参数本身，不含参数当前填写的数值。\r
+- **关于页新增个人网站入口**：设置 → 关于 中的作者联系方式新增「个人网站」徽章，点击在浏览器打开作者主页。\r
 \r
 ### 修复\r
 \r
 - 修复技能更新可能未真正获取最新版本的问题：同一仓库短时间内多次安装或更新时，可能复用过期的下载缓存导致更新后仍是旧内容。\r
 - 修复左侧导航栏的技能数量与技能管理页显示的数量不一致（导航侧曾把已卸载的技能一并计入）。\r
 - 修复各资产分类导航计数在增删后偶发不同步的问题，现已统一由一处取数并在切页时自动校准。\r
+- 修复本地模型标注重启后无法读取、Vault 迁移功能不可用的问题。\r
+- 修复「按标签筛选」与「只看收藏」同时启用时列表查询报错的问题（模型/提示词/MCP/平台/工作流）。\r
+- 优化备份/恢复、资产导入导出、技能分享与批量添加仓库等操作期间的界面响应（不再阻塞操作）。\r
 \r
 ## [v0.2.2] - 2026-09-12\r
 \r
@@ -154,4 +168,4 @@ import{u as g,j as n}from"./lib-kqLcizX3.js";import{D as p,g as d,m as f}from"./
 \r
 ### 新增\r
 \r
-- 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。`;function h(t,s){const r=[];let e=null,l=null;for(const a of t.split(/\r?\n/)){const i=a.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){e=null;continue}e={version:i[1],date:i[2]??"",sections:[]},r.push(e),l=null;continue}const o=a.match(/^(\s*)- (.+)/);if(o&&e){l||(l={title:s,items:[]},e.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=a.match(/^###\s+(.+)/);c&&e&&(l={title:c[1].trim(),items:[]},e.sections.push(l))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function u({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,l)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},l))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(u,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(u,{releases:s})]})}function A(){const t=g();return n.jsx(p,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(A,{}));
+- 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。`;function h(t,s){const r=[];let e=null,l=null;for(const a of t.split(/\r?\n/)){const i=a.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){e=null;continue}e={version:i[1],date:i[2]??"",sections:[]},r.push(e),l=null;continue}const o=a.match(/^(\s*)- (.+)/);if(o&&e){l||(l={title:s,items:[]},e.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=a.match(/^###\s+(.+)/);c&&e&&(l={title:c[1].trim(),items:[]},e.sections.push(l))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function u({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,l)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},l))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(u,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(u,{releases:s})]})}function C(){const t=p();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(C,{}));
