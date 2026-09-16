@@ -1,12 +1,24 @@
-import{u as p,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./DocsLayout-CjO2fxza.js";import{C as x}from"./Callout-CqUJaPuB.js";const m=`# Changelog\r
+import{u,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./DocsLayout-CjO2fxza.js";import{C as x}from"./Callout-CqUJaPuB.js";const m=`# Changelog\r
 \r
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。\r
 \r
 ## [Unreleased]\r
 \r
+## [v0.2.4] - 2026-09-17\r
+\r
 ### 新增\r
 \r
-（待下一版）\r
+- **本地模型哈希索引与下载防重**：模型管理新增完整 SHA-256 扫描；本地模型改名后仍可与 Hugging Face / ModelScope 的远端哈希比对，命中时直接阻止重复下载并提示本地路径。已下载模型行新增哈希操作，可直接复制缓存哈希或计算保存。\r
+- **在线模型搜索分页加载更多**：下载 Tab 的搜索结果底部新增「加载更多」，每次主动请求下一页 50 条并追加展示，避免一次拉取全量导致接口限流；切换关键词 / 来源 / 作者时重置分页。\r
+- **启动配置导出为 Markdown 启动说明书**：「快速启动」列表每行新增「导出」按钮，面板头部新增「导出全部」；导出的 MD 含模型名、可直接复制执行的启动命令（与「启动」实际下发完全一致，\`api_key\` 不进命令行），并附关键参数说明表。\r
+\r
+### 修复\r
+\r
+- 修复移除模型目录后「新建配置」的模型下拉仍列出已删除目录里模型文件的问题；此时改为明确提示尚未添加模型目录。\r
+- 修复「Llama.cpp 引擎」页在尚未创建任何启动配置时没有新建入口的问题（原提示为「点此新建」但界面上没有按钮），现空状态直接提供「新建配置」按钮。\r
+- 「Llama.cpp 引擎」页「快速启动」空态新增「添加目录」按钮，复用模型管理页的同一添加目录动作（选目录 → \`add_llama_models_dir\`），无需跳转模型管理页。\r
+- 修复关于页「个人网站」入口指向错误的站点根路径，现跳转到实际部署的官网地址；作者相关外链同时统一走应用内的打开与失败提示流程。\r
+- 修复在线模型下载对合法 GGUF 的错误校验与已有完整文件误报问题；下载完成后会按远端 SHA-256 校验，并在模型行提供标准化的标注、打开目录、复制路径与哈希操作。\r
 \r
 ## [v0.2.3] - 2026-09-15\r
 \r
@@ -168,4 +180,5 @@ import{u as p,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./
 \r
 ### 新增\r
 \r
-- 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。`;function h(t,s){const r=[];let e=null,l=null;for(const a of t.split(/\r?\n/)){const i=a.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){e=null;continue}e={version:i[1],date:i[2]??"",sections:[]},r.push(e),l=null;continue}const o=a.match(/^(\s*)- (.+)/);if(o&&e){l||(l={title:s,items:[]},e.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=a.match(/^###\s+(.+)/);c&&e&&(l={title:c[1].trim(),items:[]},e.sections.push(l))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function u({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,l)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},l))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(u,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(u,{releases:s})]})}function C(){const t=p();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(C,{}));
+- 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。\r
+`;function h(t,s){const r=[];let e=null,a=null;for(const i of t.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){e=null;continue}e={version:l[1],date:l[2]??"",sections:[]},r.push(e),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&e){a||(a={title:s,items:[]},e.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&e&&(a={title:c[1].trim(),items:[]},e.sections.push(a))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function p({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,a)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},a))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:s})]})}function A(){const t=u();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(A,{}));
