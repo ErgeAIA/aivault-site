@@ -1,8 +1,25 @@
-import{u,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./DocsLayout-CjO2fxza.js";import{C as x}from"./Callout-CqUJaPuB.js";const m=`# Changelog\r
+import{u as g,j as n}from"./lib-B17Hd8AR.js";import{D as u,g as d,m as f}from"./DocsLayout-DhGl0RRb.js";import{C as x}from"./Callout-xewnm8H3.js";const m=`# Changelog\r
 \r
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。\r
 \r
 ## [Unreleased]\r
+\r
+## [v0.2.5] - 2026-09-17\r
+\r
+### 新增\r
+\r
+- **启动配置一键复制 OpenAI 兼容 API 地址**：「新建 / 编辑配置」的「常用 → 基础 → 端口」输入框右侧新增复制徽章，点击即复制 \`http://127.0.0.1:{端口}/v1\`，方便粘贴到其它客户端或 Agent 工具。\r
+- **在线模型文件行复制下载地址**：模型管理「下载」页展开仓库后的文件名旁新增复制徽章，点击复制该文件的直链地址（悬停仍可预览完整链接）。\r
+- **启动前资源释放（Windows）**：引擎页「快速启动」标题行新增「释放资源」入口，弹窗可关闭无关应用并压缩工作集，为本地模型腾出内存。列表按进程名聚合（同名子进程合并为一行，显示合计占用与进程数），支持全选/全不选；有 N 卡时展示各候选显存占用；「同时压缩工作集」带悬浮说明。默认开启「启动前每次都提示」——点「启动」会先走同一弹窗，可选「释放并启动」或「仅启动，不释放」。关闭进程前会做 PID 复验，系统关键进程与 llama-server 永不列入。\r
+- **配置参数 hover 显示 CLI 命令行参数**：新建/编辑配置时，参数说明首行以等宽字体展示对应命令行参数（如 \`--host\`）；参数搜索也可按 flag 命中。\r
+\r
+### 修复\r
+\r
+- 在线模型搜索结果文件名不再「点击即下载」，下载只通过行尾「下载」按钮触发，避免浏览列表时误触开始下载大模型。\r
+\r
+### 变更\r
+\r
+- 前端包管理器声明升级为 pnpm 12.4.2，并同步 \`pnpm-lock.yaml\`（开发者请使用对应版本安装依赖）。\r
 \r
 ## [v0.2.4] - 2026-09-17\r
 \r
@@ -181,4 +198,4 @@ import{u,j as n}from"./lib-kqLcizX3.js";import{D as g,g as d,m as f}from"./DocsL
 ### 新增\r
 \r
 - 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。\r
-`;function h(t,s){const r=[];let e=null,a=null;for(const i of t.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){e=null;continue}e={version:l[1],date:l[2]??"",sections:[]},r.push(e),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&e){a||(a={title:s,items:[]},e.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&e&&(a={title:c[1].trim(),items:[]},e.sections.push(a))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function p({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,a)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},a))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:s})]})}function A(){const t=u();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(A,{}));
+`;function h(t,s){const r=[];let e=null,a=null;for(const i of t.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){e=null;continue}e={version:l[1],date:l[2]??"",sections:[]},r.push(e),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&e){a||(a={title:s,items:[]},e.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&e&&(a={title:c[1].trim(),items:[]},e.sections.push(a))}return r}function G(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function p({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,a)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:G(e.text)},a))})]},r.title))]},s.version))})}function b({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist/releases/latest",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:s})]})}function A(){const t=g();return n.jsx(u,{page:d("changelog",t),toc:[],children:n.jsx(b,{locale:t})})}f(n.jsx(A,{}));
