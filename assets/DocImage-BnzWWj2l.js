@@ -1,1 +1,0 @@
-import{j as e,w as a}from"./lib-B17Hd8AR.js";function o({src:s,caption:r}){return e.jsxs("figure",{className:"doc-figure",children:[e.jsx("img",{src:a(s),alt:r??"",loading:"lazy",className:"w-full rounded-xl border",style:{borderColor:"rgb(var(--border-default))"}}),r&&e.jsx("figcaption",{children:r})]})}export{o as D};

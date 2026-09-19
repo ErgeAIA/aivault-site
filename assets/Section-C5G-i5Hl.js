@@ -1,0 +1,1 @@
+import{j as s}from"./lib-B8J5mPGj.js";function t({id:e,title:i,children:n}){return s.jsxs("section",{id:e,children:[s.jsx("h2",{children:i}),s.jsx("div",{className:"doc-section",children:n})]})}export{t as S};

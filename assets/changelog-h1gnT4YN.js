@@ -1,4 +1,4 @@
-import{u as g,j as n}from"./lib-B17Hd8AR.js";import{D as u,g as d,m as f}from"./DocsLayout-DhGl0RRb.js";import{C as x}from"./Callout-xewnm8H3.js";const m=`# Changelog\r
+import{u as g,j as n}from"./lib-B8J5mPGj.js";import{D as u,g as d,m as f}from"./DocsLayout-2KUIyCq4.js";import{C as x}from"./Callout-wBxQp1s1.js";const m=`# Changelog\r
 \r
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。\r
 \r
@@ -11,7 +11,7 @@ import{u as g,j as n}from"./lib-B17Hd8AR.js";import{D as u,g as d,m as f}from"./
 - 修复引擎「启动前资源释放」弹窗中「仅启动，不释放」点击后引擎不启动的问题，现点击后不释放资源、直接开始启动。\r
 - 修复「启动前资源释放」弹窗点「确认释放」后应用窗口可能卡死白屏的问题：不再误关应用自身的界面进程，扫描与释放的重负载操作移出界面线程，窗口不再卡顿无响应。\r
 \r
-## [v0.2.5] - 2026-09-17\r
+## [v0.2.5] - 2026-09-18\r
 \r
 ### 新增\r
 \r
