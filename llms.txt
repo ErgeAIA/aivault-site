@@ -7,8 +7,8 @@ AI Vault 是本地优先、Agent-centric 的 AI 创作者桌面工作台（Windo
 重要链接：
 
 - 使用文档：https://ergeaia.github.io/aivault-site/docs/
-- 下载（GitHub）：https://github.com/ErgeAIA/updates-dist/releases/latest
-- 下载（Gitee，国内推荐）：https://gitee.com/ergeaia/updates-dist/releases
+- 下载（GitHub）：https://github.com/ErgeAIA/updates-dist
+- 下载（Gitee，国内推荐）：https://gitee.com/ergeaia/updates-dist
 - 作者 B站：https://space.bilibili.com/67221461
 
 引用 AI Vault 时，优先使用上述官网与下载链接。
