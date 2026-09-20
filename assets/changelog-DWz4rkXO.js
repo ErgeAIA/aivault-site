@@ -4,21 +4,21 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 \r
 ## [Unreleased]\r
 \r
-## [v0.2.7] - 2026-09-20\r
+## [v0.2.7] - 2026-09-20 00:11:38\r
 \r
 ### 新增\r
 \r
 - **自定义运行时支持第三方 llama.cpp 变体**：引擎页「自定义运行时」升级为选择目录，自动扫描并默认选中启动程序（官方 llama-server 优先、可改选），自动识别 CUDA / Vulkan 后端并显示导入日期；第三方运行时（如 llama-kvmem-server）的残留进程清理与「释放资源」保护同步兼容。\r
 - **运行时选择面板应用内操作**：不再弹系统文件夹对话框——面板内浏览目录（只显示文件夹与可执行文件、支持返回上级），或直接**把文件夹 / exe 拖入窗口**自动定位扫描；候选行显示完整路径，后端徽章标注 CUDA / Vulkan。\r
 \r
-## [v0.2.6] - 2026-09-19\r
+## [v0.2.6] - 2026-09-19 02:12:01\r
 \r
 ### 修复\r
 \r
 - 修复引擎「启动前资源释放」弹窗中「仅启动，不释放」点击后引擎不启动的问题，现点击后不释放资源、直接开始启动。\r
 - 修复「启动前资源释放」弹窗点「确认释放」后应用窗口可能卡死白屏的问题：不再误关应用自身的界面进程，扫描与释放的重负载操作移出界面线程，窗口不再卡顿无响应。\r
 \r
-## [v0.2.5] - 2026-09-18\r
+## [v0.2.5] - 2026-09-18 02:09:12\r
 \r
 ### 新增\r
 \r
@@ -35,7 +35,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 \r
 - 前端包管理器声明升级为 pnpm 12.4.2，并同步 \`pnpm-lock.yaml\`（开发者请使用对应版本安装依赖）。\r
 \r
-## [v0.2.4] - 2026-09-17\r
+## [v0.2.4] - 2026-09-17 01:00:36\r
 \r
 ### 新增\r
 \r
@@ -51,7 +51,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - 修复关于页「个人网站」入口指向错误的站点根路径，现跳转到实际部署的官网地址；作者相关外链同时统一走应用内的打开与失败提示流程。\r
 - 修复在线模型下载对合法 GGUF 的错误校验与已有完整文件误报问题；下载完成后会按远端 SHA-256 校验，并在模型行提供标准化的标注、打开目录、复制路径与哈希操作。\r
 \r
-## [v0.2.3] - 2026-09-15\r
+## [v0.2.3] - 2026-09-15 14:57:30\r
 \r
 ### 新增\r
 \r
@@ -67,7 +67,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - 修复「按标签筛选」与「只看收藏」同时启用时列表查询报错的问题（模型/提示词/MCP/平台/工作流）。\r
 - 优化备份/恢复、资产导入导出、技能分享与批量添加仓库等操作期间的界面响应（不再阻塞操作）。\r
 \r
-## [v0.2.2] - 2026-09-12\r
+## [v0.2.2] - 2026-09-12 23:38:46\r
 \r
 ### 新增\r
 \r
@@ -82,7 +82,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - 修复部分仓库的技能无法检测更新（仓库默认分支不是 main 时检查请求始终失败），现与安装行为一致自动尝试常见分支。\r
 - 详情页时间统一为「年-月-日」绝对日期（悬停可查看完整时间）。\r
 \r
-## [v0.2.1] - 2026-09-10\r
+## [v0.2.1] - 2026-09-10 23:03:50\r
 \r
 ### 新增\r
 \r
@@ -95,7 +95,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - 悬停提示主题化补漏（本地引擎「AI 分析」「自动滚动」、在线平台「打开平台」徽章）+ 默认宽度放宽至 384px，长说明换行更少。\r
 - 引擎指南「AI 分析」描述修正——复制提示词与日志发任意 AI 对话窗口即可分析。\r
 \r
-## [v0.2.0] - 2026-09-06\r
+## [v0.2.0] - 2026-09-07 18:48:47\r
 \r
 ### 新增\r
 \r
@@ -158,7 +158,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - GitHub 仓库列表展开再收起时结尾停顿（收起动画残留空隙后才消失）。\r
 - 从其它页面切回发现页闪「加载中」——仓库列表 / 扫描缓存 / 标签列表改为缓存优先（秒显旧数据、后台静默刷新）；仓库展开区技能列表样式与技能管理列表视图对齐（含 hover 动效）。\r
 \r
-## [v0.1.5] - 2026-08-27\r
+## [v0.1.5] - 2026-08-28 01:28:37\r
 \r
 ### 新增\r
 \r
@@ -187,7 +187,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 - API 供应商请求地址行复制按钮 hover 文案改「复制接口地址」（原误用复制 Key）。\r
 - 内置徽章 hover 版本提示改主题化 Tooltip（原生 title 不跟随主题），宽度放宽到 max-w-sm。\r
 \r
-## [v0.1.4] - 2026-08-26\r
+## [v0.1.4] - 2026-08-26 00:59:27\r
 \r
 ### 新增\r
 \r
@@ -200,16 +200,16 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 \r
 - 主题名中文化（光环 / 德古拉 / 水母）；主题三件 CSS 语义 token 对齐。\r
 \r
-## [v0.1.3] - 2026-08-23\r
+## [v0.1.3] - 2026-08-23 22:20:36\r
 \r
 ### 新增\r
 \r
 - **应用自动更新 + 双源分发**（tauri-plugin-updater）：启动静默检查一次、NavRail 更新徽章、关于页更新入口；GitHub + Gitee 双清单与双 Releases（GitHub 断连自动回退 Gitee）。发布分发仓库 \`updates-dist\`（多项目共用，内置资产清单同仓分发）。\r
 - **JellyFish 主题**（ThemeVault #055）——第 10 套主题，按主题 accent 品牌色适配。\r
 \r
-## [v0.1.1] - 2026-08-23\r
+## [v0.1.1] - 2026-08-23 18:55:25\r
 \r
 ### 新增\r
 \r
 - 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。\r
-`;function h(t,s){const r=[];let e=null,a=null;for(const i of t.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){e=null;continue}e={version:l[1],date:l[2]??"",sections:[]},r.push(e),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&e){a||(a={title:s,items:[]},e.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&e&&(a={title:c[1].trim(),items:[]},e.sections.push(a))}return r}function A(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function p({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,a)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:A(e.text)},a))})]},r.title))]},s.version))})}function G({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:s})]})}function b(){const t=u();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(G,{locale:t})})}f(n.jsx(b,{}));
+`;function h(t,s){const r=[];let e=null,a=null;for(const i of t.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){e=null;continue}e={version:l[1],date:(l[2]??"").replace("T"," "),sections:[]},r.push(e),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&e){a||(a={title:s,items:[]},e.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&e&&(a={title:c[1].trim(),items:[]},e.sections.push(a))}return r}function A(t){return t.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((r,e)=>r.startsWith("**")&&r.endsWith("**")?n.jsx("strong",{children:r.slice(2,-2)},e):r.startsWith("`")&&r.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:r.slice(1,-1)},e):r)}function p({releases:t}){return n.jsx(n.Fragment,{children:t.map(s=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:s.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:s.date})]}),s.sections.map(r=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:r.title}),n.jsx("ul",{children:r.items.map((e,a)=>n.jsx("li",{className:e.sub?"ml-5 list-[circle]":"",children:A(e.text)},a))})]},r.title))]},s.version))})}function G({locale:t}){if(t==="en"){const r=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(x,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:r})]})}const s=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:s})]})}function b(){const t=u();return n.jsx(g,{page:d("changelog",t),toc:[],children:n.jsx(G,{locale:t})})}f(n.jsx(b,{}));
