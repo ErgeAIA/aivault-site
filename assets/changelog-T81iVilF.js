@@ -4,7 +4,7 @@ import{u,j as n}from"./lib-GlaZ881D.js";import{D as g,g as d,m as f}from"./DocsL
 \r
 ## [Unreleased]\r
 \r
-## [v0.2.8] - 2026-09-21 00:20:00\r
+## [v0.2.8] - 2026-09-21 00:47:16\r
 \r
 感谢 B 站用户「宸子錒」的反馈。\r
 \r
