@@ -1,4 +1,4 @@
-import{u as g,j as n}from"./lib-C3MjFLCx.js";import{D as u,g as d,m as f}from"./DocsLayout-D7RBfjeV.js";import{C as A}from"./Callout-Bcjeq3qU.js";const m=`# Changelog
+import{u as g,j as n}from"./lib-C3MjFLCx.js";import{D as u,g as d,m as f}from"./DocsLayout-CAlDoa8O.js";import{C as A}from"./Callout-Bcjeq3qU.js";const m=`# Changelog
 
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
