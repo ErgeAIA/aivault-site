@@ -1,10 +1,44 @@
-import{u as g,j as n}from"./lib-C3MjFLCx.js";import{D as u,g as d,m as f}from"./DocsLayout-CAlDoa8O.js";import{C as A}from"./Callout-Bcjeq3qU.js";const m=`# Changelog
+import{u as g,j as n}from"./lib-C3MjFLCx.js";import{D as h,g as u,m as f}from"./DocsLayout-CWmKDndZ.js";import{C as I}from"./Callout-Bcjeq3qU.js";const m=`# Changelog
 
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
 > **写法说明**：每条只写「做了什么」——一个加粗短标签 + 一到两句用户视角的变更，同类改动合并成一条。动机、取证与验证数字、决策编号（DEC / BUG）、内部字段名与文件路径、多轮沟通经过**不进日志**，一律归 \`docs/.AI/\`（decision-log、project-progress、计划文档）。措辞规范真相源见用户级技能 \`changelog-manager\` 的「核心原则」，项目侧约束见 \`AGENTS.md\` 收尾同步第 9 条。
 
 ## [Unreleased]
+
+### 新增
+
+- **本地引擎新增 NInfer 运行时**：分支页新增「KVMEM / NInfer」运行时切换，NInfer（.ninfer 模型、WebUI 内嵌、按 RTX 30/40/50 显卡系列区分的三个 Windows 包）与 KVMEM 一样支持完整的启动配置、一键预设、启动说明书导出与对话，配置列表、预设与下载指引跟随切换；NInfer 的运行时下载给「官方 Releases 页 + 作者网盘目录」两个入口，并按本机显卡系列提示该挑哪一系的包（上游包名随版本变化，不逐包写死文件名与校验值），模型选择框只列 .ninfer 文件；预设按「能不能跑起来」排三档——新建配置默认填入上游实测通过的「256k（推荐）」，另有照抄上游脚本的「官方脚本（200k）」和显存被占用时兜底的「省显存（64k）」；另给「CUDA Graph」一个独立开关，遇到在图捕获阶段崩溃的模型（如三元量化件）关掉即可启动，同时还能腾出约 0.5 GiB 显存预留；选了 .ninfer 模型后，配置弹窗会直接读出这件制品含哪些组件（视觉塔 / MTP / dflash2 草稿头）、上下文上限、层数与量化族，开了制品里没有的能力（比如给没有视觉塔的件打开「视觉」）会在表单里当场说明，「模型管理」也会把 .ninfer 文件列进模型列表并标出格式，这类文件的启动配置同样长在行上——直接显示已建的 NInfer 配置（点开就地编辑），点「＋」就以这个文件新建 NInfer 启动配置。
+- **分支运行时选过一次就记住**：新建分支启动配置时，「选择分支运行时程序」会直接列出之前保存配置用过的分支运行时（带 KVMEM / NInfer 标识与所在包目录名，正在被几条配置使用也有标注），点一下即填入路径；不需要的记录可以单独移除，移除不删除文件、也不影响已有配置启动。这些记录一并纳入备份导出与导入。
+- **官网新增 NInfer 参数手册**：与 KVMEM 手册同格式的完整参数对照页（ninfer-parameters），含 GGUF 转 .ninfer 的完整转换步骤。
+- **ComfyUI 工作流内置了一个精选清单**：10 个可直接在线运行的工作流（含 Krea2 超写实文生图、MiniMax-H3 文生视频、Z-Image 人像等）随应用提供，卡片上的链接可直接到 RunningHub 打开或下载工作流，分类标签一并带上；本地已有的同名条目不会被覆盖。
+- **一眼看出哪些是内置资产**：资产卡与详情面板上，来自随包内置清单的条目（MCP、提示词、模型、在线平台、规则、ComfyUI 工作流、技能仓库）会多出一枚小包裹图标，悬停有说明；Agent 列表里的「预置 / 自定义」也由文字改成同一枚图标，看图标就知道该资产跟着内置清单走、能收到更新。
+- **内置支持 WorkBuddy 国际版**：Agent 列表与技能雷达新增「WorkBuddy AI」，与国内版 WorkBuddy 各自独立开关、各写各的用户级技能目录；两者在项目内共用同一处技能目录。图标沿用 WorkBuddy。
+- **环境与运行直接看显存占用**：GPU 卡现在显示「15.9 GB 显存 · 已用 2.4 GB」这样的实时值（页面可见时每 5 秒取一次，切走就停），悬停说明数据怎么来的。CPU 与显卡名去掉厂牌前缀（"NVIDIA GeForce RTX 5080" → "RTX 5080"），完整名保留在悬停里，窄窗口下不再溢出卡片背景。
+- **内置支持 MiniMax Code**：Agent 列表与技能雷达新增「MiniMax Code」，启用后技能可分发到它的用户级技能目录，项目内也可按项目分发；图标由官方标识精简而来。需要留意的是，MiniMax Code 自己就会读取技能主目录，所以在这里停用该 Agent 并不会让它停止加载技能。
+- **DSH 面板地址可以固定端口**：对话页的 DSH 面板多了一栏「面板端口」，填了就每次用这个端口（输入后失焦即记下，停止再启动生效），留空则每次随机——固定之后可以在外部浏览器直接打开这个地址并收藏。该端口被别的程序占用时，本次自动改用一个随机端口并在面板上说明原因，不会因此启动失败。
+- **提示词内置清单多了 10 条**：专家会诊、苏格拉底式提问、双层解释法、反向拆解、最小实验替代空想、跨领域借解、纵横分析法、事实核查、第一性原理、Agent 记忆迁移随应用提供，新开的库开箱就有；已经在自己库里编辑过的同名提示词仍以本机版本为准。
+
+### 变更
+
+- **技能不再要靠手动「重新扫描」才会出现**：在 AIVault 之外装的技能（比如 \`npx\` 类安装器直接落盘的那些）现在启动时会自动登记进技能管理，并提示登记了几个；「重新扫描」按钮保留，它仍负责清理「目录已经不存在」的记录——这类删除不会在启动时自动发生。
+- **「全部更新」有了执行中状态**：批量更新期间按钮转圈并禁用，上一轮没跑完时不会再被点一次并发跑第二轮。
+- **导出的运行日志一眼认得出是哪次跑的**：默认文件名改成「配置名 + 本地时间」（\`MERQ2-2026-10-10-11-07.log\`），不用再手动改名；此前固定 \`llama-server-时间\`，多条配置导出来全是一个系列，而且那个时间是 UTC，比墙上钟差整时区，按点找文件必然找错。官方与分支两条通道一起改，配置名里不能进文件名的字符会自动替换。
+- **启动失败现在说得出原因**：本地引擎因显存不足等原因起不来时，提示会直接给出数字（运行时预留需要多少、当时只剩多少、差多少）和该调哪个参数，不再是「进程异常退出（退出码 N）」这种无从下手的一句话。
+- **预设会先告诉你它能不能跑起来**：上游未做模型验收、或设备侧显存预留更大的那几套 NInfer 预设，按钮上带警告标记，悬停说明显存门槛与该调哪个参数，避免照着官方脚本选了却起不来。
+- **检查内置资产更新更快、也更容易看懂**：检查更新时会同时向两个分发源发起，谁先返回用谁——主源在境内变慢时不再干等一轮超时。点内置徽章会真的去查一次（此前当天查过一次就只回缓存、网络恢复也不会再试），检查失败不再没有反应，会明确提示原因。
+- **危险动作的红更醒目**：删除 / 重置 / 迁移 / 停止这类按钮整体换成激光玫红——淡红底更实、悬停时浮出一圈高饱和红描边作为反馈、文字仍是看得清的亮玫红；实心红按钮上的文字方向也修正了（深色主题下改用深色字，此前是白字压亮红，几乎看不清）。列表与编辑器里的行内删除图标一并统一：平时就是危险红（不再灰到悬停才看得出来），悬停浮出淡红底与描边，二次确认时变实心。
+- **表单报错看得清了**：字段校验的红框、必填星号、错误提示文字与提示块原先用的是一种偏暗的红（在深色背景上几乎糊成一片），现统一换成与危险族同系的亮玫红，错误块底色也跟着同族。同口径顺带修了「成功」一侧：同步成功提示条的图标与竖条、部署状态「已生效」标签原先偏暗看不清，现用亮标识绿；浅色主题里绿色按钮上的字也压暗到可读。
+- **来源与状态的颜色不再撞车**：skills.sh 来源原先与「未知来源」是同一个灰，现改成黄绿；「待处理」状态原先与「收藏」星标同为金色，现改成冷蓝灰。警告提示保持原来的金色不变。
+
+### 修复
+
+- **Intel / AMD 独显也能看出显存大小**：此前只有 NVIDIA 卡报得出显存容量，其它厂商一律空白（Intel Arc B570 / B580 用户反馈"识别不到"）。现改读驱动自己写的真值；顺带避开一个坑——系统那个常规字段是 32 位，16 GB 的卡也只报 4 GB，不能拿来兜底，读不到就显示「—」，不猜。
+- **分支运行时的速度不再空着**：NInfer 跑起来后「生成速度」「预填速度」此前恒为「—」（它的日志写法与官方不同，一条都没匹配上），现按 NInfer 自己的 \`prefill\` / \`decode\` 行取数，每 5 秒跟着刷新；KVMEM 分支沿用官方格式，本来正常。
+- **分支运行时候选按程序名宽松匹配**：上游有的包把入口程序拼成 \`ninfer-serve-120a.exe\`（少一个 r），此前「选择分支运行时程序」的候选列表只认带 \`server\` 的名字，这类包扫到了也不显示，只能手输路径；现在按更宽的 \`serve\` 判定，包内正常出现在列表里、点一下就能选。（包内那些 DLL 与脚本依旧不会被当成候选。）候选的扫描范围同时从两层放宽到三层——入口放在 \`workers\\ninfer\\\` 这类深层目录里的包，把整个包目录拖进来也能列出。
+- **关掉视觉不再拖着一串视觉参数**：NInfer 配置里把「视觉」关掉后，「视觉驻留」「图片 token 上限」不再照样下发给服务端（此前服务端会直接拒绝启动并提示 \`--vision-residency requires --vision\`）；「思考预算」同理只在「启用思考」开着时才发，导出的启动说明书跟着一起对齐。
+- **参数报错不再出现内部字段名**：启动配置里数值填错时，提示改成「并发解码 --max-concurrency 须在 1-8 范围内」这种「中文名 + 原始参数名」的写法，既看得懂也知道去手册查哪一条；此前显示的是 \`max_concurrency\` 这类内部列名（分支配置的两种运行时都覆盖，界面模式相关的提示一并改成人话）。
+- **自定义参数的同名提示能触发了**：在启动配置的「自定义参数」里写 \`--api-key\`、\`--kvmem-budget\` 这种带横线的常规写法时，此前不会出现「与内置参数同名（会覆盖内置值）」的提示（只有不带横线的写法才亮），现已按同一口径归一后判定，分支配置的两种运行时都跟着修好。
 
 ## [v0.3.1] - 2026-10-04 02:01:45
 
@@ -342,4 +376,4 @@ import{u as g,j as n}from"./lib-C3MjFLCx.js";import{D as u,g as d,m as f}from"./
 ### 新增
 
 - 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。
-`;function h(s,a){const e=[];let t=null,l=null;for(const r of s.split(/\r?\n/)){const i=r.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){t=null;continue}t={version:i[1],date:(i[2]??"").replace("T"," "),sections:[]},e.push(t),l=null;continue}const o=r.match(/^(\s*)- (.+)/);if(o&&t){l||(l={title:a,items:[]},t.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=r.match(/^###\s+(.+)/);c&&t&&(l={title:c[1].trim(),items:[]},t.sections.push(l))}return e}function k(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function p({releases:s}){return n.jsx(n.Fragment,{children:s.map(a=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:a.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:a.date})]}),a.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,l)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:k(t.text)},l))})]},e.title))]},a.version))})}function x({locale:s}){if(s==="en"){const e=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(A,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:e})]})}const a=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:a})]})}function G(){const s=g();return n.jsx(u,{page:d("changelog",s),toc:[],children:n.jsx(x,{locale:s})})}f(n.jsx(G,{}));
+`;function d(s,r){const e=[];let t=null,a=null;for(const l of s.split(/\r?\n/)){const i=l.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){t=null;continue}t={version:i[1],date:(i[2]??"").replace("T"," "),sections:[]},e.push(t),a=null;continue}const o=l.match(/^(\s*)- (.+)/);if(o&&t){a||(a={title:r,items:[]},t.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=l.match(/^###\s+(.+)/);c&&t&&(a={title:c[1].trim(),items:[]},t.sections.push(a))}return e}function A(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function p({releases:s}){return n.jsx(n.Fragment,{children:s.map(r=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:r.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:r.date})]}),r.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,a)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:A(t.text)},a))})]},e.title))]},r.version))})}function k({locale:s}){if(s==="en"){const e=d(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(I,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:e})]})}const r=d(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:r})]})}function x(){const s=g();return n.jsx(h,{page:u("changelog",s),toc:[],children:n.jsx(k,{locale:s})})}f(n.jsx(x,{}));
