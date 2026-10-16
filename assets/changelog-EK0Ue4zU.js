@@ -4,6 +4,13 @@ import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as d,g as u,m as f}from"./
 
 > **写法说明**：每条只写「做了什么」——一个加粗短标签 + 一到两句用户视角的变更，同类改动合并成一条。动机、取证与验证数字、决策编号（DEC / BUG）、内部字段名与文件路径、多轮沟通经过**不进日志**，一律归 \`docs/.AI/\`（decision-log、project-progress、计划文档）。措辞规范真相源见用户级技能 \`changelog-manager\` 的「核心原则」，项目侧约束见 \`AGENTS.md\` 收尾同步第 9 条。
 
+## [Unreleased]
+
+### 变更
+
+- **分发渠道单线化**：应用内自动更新与内置资产检查只走 GitHub，Gitee 镜像渠道移除。
+- **网盘渠道恢复**：官网下载区新增夸克网盘入口（与 Releases 同步上传），国内网络下载安装包不再依赖 Gitee。
+
 ## [v0.4.0] - 2026-10-16 16:17:06
 
 ### 新增
