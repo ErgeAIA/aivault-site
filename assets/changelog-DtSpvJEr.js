@@ -1,10 +1,10 @@
-import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as u,g as d,m as f}from"./DocsLayout-DunGc7wM.js";import{C as A}from"./Callout-DGmgfJEF.js";const m=`# Changelog
+import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as d,g as u,m as f}from"./DocsLayout-DunGc7wM.js";import{C as I}from"./Callout-DGmgfJEF.js";const m=`# Changelog
 
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
 > **写法说明**：每条只写「做了什么」——一个加粗短标签 + 一到两句用户视角的变更，同类改动合并成一条。动机、取证与验证数字、决策编号（DEC / BUG）、内部字段名与文件路径、多轮沟通经过**不进日志**，一律归 \`docs/.AI/\`（decision-log、project-progress、计划文档）。措辞规范真相源见用户级技能 \`changelog-manager\` 的「核心原则」，项目侧约束见 \`AGENTS.md\` 收尾同步第 9 条。
 
-## [Unreleased]
+## [v0.4.0] - 2026-10-16 16:17:06
 
 ### 新增
 
@@ -22,6 +22,9 @@ import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as u,g as d,m as f}from"./
 - **分支页直接设「当前运行时」**：分支运行时区块列出装过的程序，点一下即可设为当前项，新建启动配置默认用它。
 - **分支运行时可检测上游新版**：手动点一下检测，装的是哪条分支就比对哪条发布线，有新版给徽章并可跳到下载页。
 - **KVMEM 分支改为入口式下载**：与 NInfer 一样只给稳定的下载入口，并按显卡档位（RTX 20 系 / V100）给出挑包建议。
+- **本地部署指南**：官网新增「本地部署指南」页（双语）——从下载运行时与模型、新建启动配置，到启动失败判读与来源声明的完整流程。
+- **NInfer 配置显示模型体积**：编辑 NInfer 启动配置时，模型信息区直接显示模型制品体积（GB，保留两位小数）。
+- **内置清单扩充**：MCPs 与模型导航新增 4 个内置条目——docs-mcp-server（Open Code Review 文档 MCP）、CodeGraph 代码图谱 MCP，以及 Qwen3.8-27B Uncensored 与 Heretic-Ara 两个 16G 显存档模型导航。
 
 ### 变更
 
@@ -41,7 +44,10 @@ import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as u,g as d,m as f}from"./
 - **运行时登记的时机说清楚了**：登记发生在「设为当前运行时」时，不再说成「保存配置时自动登记」。
 - **分支页下载指引更清晰**：挑包建议按分句逐行排列，并注明上游按显卡系列分包、各系列发版不同步——看到「有新版」先确认有自己显卡档位的包再更新；模型下载区说明网盘提供推荐模型（Qwen3.8-27B 为 16G 显存推荐档），并保留自行到 HuggingFace / ModelScope 下载其他模型的入口；移除视频讲解链接；上游仓库入口与归属声明收进「分支运行时」标题旁（声明为问号悬停提示），不再单独占位。
 - **NInfer 预设对齐 0.18.0 正式版脚本**：图片 token 上限 1024、思考预算 8192、自适应 MTP 开，推荐档 KV 预算调至脚本原值 36864；「前缀保留 / 最近保留」成为 NInfer 配置的一等字段（默认 12288/1024，与官方脚本一致），留空则由服务端按自身默认处理。
+- **「AI 分析」提示词全面重写**：现在先从启动命令行识别引擎（官方 / KVMEM / NInfer）再按对应口径分析；启动失败走「失败归因」（内置显存不足、张量格式不识别、图捕获失败、方言不匹配、保留窗口非法等 8 类签名表），运行中走「运行体检」；不再用官方线的速度档位表与「16GB 上下文建议」硬套分支引擎。
+- **「AI 分析」产出 HTML 讲解报告**：分析结果从纯文本升级为可直接保存的单文件网页——首屏结论与因果链图讲清「发生了什么、为什么」，显存、速度、参数各配图表，修复建议收尾；深色版式、数值直接标在图上，双击离线可开，便于归档。
 - **NInfer 新增 LRFU 历史加权**：与官方脚本一致默认开启（衰减 0.5、命中范围 0.9、GQA 聚合 max），可在配置编辑器中调整或关闭——直跑引擎时官方脚本不会替你开它，这里补上了等价传参。
+- **「Llama.cpp 引擎」更名「引擎面板」**：本地引擎分组下的引擎页不再以单一实现命名——官方线与 NInfer / KVMEM 分支都在这里管理，界面各处跳转提示同步更新。
 
 ### 修复
 
@@ -393,4 +399,4 @@ import{u as g,j as n}from"./lib-aS5yxDun.js";import{D as u,g as d,m as f}from"./
 ### 新增
 
 - 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。
-`;function h(s,a){const e=[];let t=null,l=null;for(const r of s.split(/\r?\n/)){const i=r.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(i){if(i[1]==="未发布"||i[1]==="Unreleased"){t=null;continue}t={version:i[1],date:(i[2]??"").replace("T"," "),sections:[]},e.push(t),l=null;continue}const o=r.match(/^(\s*)- (.+)/);if(o&&t){l||(l={title:a,items:[]},t.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=r.match(/^###\s+(.+)/);c&&t&&(l={title:c[1].trim(),items:[]},t.sections.push(l))}return e}function I(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function p({releases:s}){return n.jsx(n.Fragment,{children:s.map(a=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:a.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:a.date})]}),a.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,l)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:I(t.text)},l))})]},e.title))]},a.version))})}function k({locale:s}){if(s==="en"){const e=h(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(A,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:e})]})}const a=h(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:a})]})}function G(){const s=g();return n.jsx(u,{page:d("changelog",s),toc:[],children:n.jsx(k,{locale:s})})}f(n.jsx(G,{}));
+`;function p(s,a){const e=[];let t=null,l=null;for(const i of s.split(/\r?\n/)){const r=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(r){if(r[1]==="未发布"||r[1]==="Unreleased"){t=null;continue}t={version:r[1],date:(r[2]??"").replace("T"," "),sections:[]},e.push(t),l=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&t){l||(l={title:a,items:[]},t.sections.push(l)),l.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&t&&(l={title:c[1].trim(),items:[]},t.sections.push(l))}return e}function A(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function h({releases:s}){return n.jsx(n.Fragment,{children:s.map(a=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:a.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:a.date})]}),a.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,l)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:A(t.text)},l))})]},e.title))]},a.version))})}function G({locale:s}){if(s==="en"){const e=p(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(I,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(h,{releases:e})]})}const a=p(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(h,{releases:a})]})}function k(){const s=g();return n.jsx(d,{page:u("changelog",s),toc:[],children:n.jsx(G,{locale:s})})}f(n.jsx(k,{}));
