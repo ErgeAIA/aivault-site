@@ -4,7 +4,7 @@ import{u as h,j as n}from"./lib-aS5yxDun.js";import{D as u,g as d,m as f}from"./
 
 > **写法说明**：每条只写「做了什么」——一个加粗短标签 + 一到两句用户视角的变更，同类改动合并成一条。动机、取证与验证数字、决策编号（DEC / BUG）、内部字段名与文件路径、多轮沟通经过**不进日志**，一律归 \`docs/agents/\`（decision-log、project-progress、计划文档）。措辞规范真相源见用户级技能 \`changelog-manager\` 的「核心原则」，项目侧约束见 \`AGENTS.md\` 收尾同步第 9 条。
 
-## [v0.6.0] - 2026-10-30
+## [v0.6.0] - 2026-10-30 14:03:18
 
 ### 新增
 
