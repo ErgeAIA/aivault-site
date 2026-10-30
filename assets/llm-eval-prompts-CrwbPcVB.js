@@ -1,4 +1,4 @@
-import{c as w,u as b,r as y,j as e}from"./lib-aS5yxDun.js";import{D as S,g as C,m as M}from"./DocsLayout-DCpPeVtN.js";import{C as j}from"./Callout-DGmgfJEF.js";import{C as T}from"./copy-CqR3zDF-.js";/**
+import{c as w,u as b,r as y,j as e}from"./lib-aS5yxDun.js";import{D as S,g as C,m as M}from"./DocsLayout-Dr_HelXd.js";import{C as j}from"./Callout-DGmgfJEF.js";import{C as T}from"./copy-CqR3zDF-.js";/**
  * @license lucide-react v1.40.0 - ISC
  *
  * This source code is licensed under the ISC license.
