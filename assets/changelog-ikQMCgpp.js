@@ -1,8 +1,32 @@
-import{u as h,j as n}from"./lib-S8l7av3K.js";import{D as u,g as d,m as A}from"./DocsLayout-BOaz8XO4.js";import{C as f}from"./Callout-bHgn74xz.js";const m=`# Changelog
+import{u as h,j as n}from"./lib-S8l7av3K.js";import{D as u,g as d,m as f}from"./DocsLayout-BOaz8XO4.js";import{C as A}from"./Callout-bHgn74xz.js";const m=`# Changelog
 
 本项目的所有重要变更都记录在此文件。格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
 > **写法说明**：每条只写「做了什么」——一个加粗短标签 + 一到两句用户视角的变更，同类改动合并成一条。动机、取证与验证数字、决策编号（DEC / BUG）、内部字段名与文件路径、多轮沟通经过**不进日志**，一律归 \`docs/agents/\`（decision-log、project-progress、计划文档）。措辞规范真相源见用户级技能 \`changelog-manager\` 的「核心原则」，项目侧约束见 \`AGENTS.md\` 收尾同步第 9 条。
+
+## [Unreleased]
+
+## [v0.7.1] - 2026-11-16
+
+### 新增
+
+- **空闲自动卸载（Llama.cpp）**：配置里可按分钟设「空闲多久后卸载模型」，到点把显存与内存还给系统，引擎页显示「已休眠」，下个请求自动重新加载；留空 = 永不。该参数是启动参数，改完需重启引擎生效。
+- **空闲自动卸载（PolyStrata）**：分支配置同样支持按分钟设置空闲卸载，到点由应用自动归还显存与内存，运行卡显示「已休眠」，下个请求自动重新加载（约十几秒）；会话上下文不保留，留空 = 永不，改完需重启引擎生效。
+- **选好模型就能看到它的底细**：模型路径下方直接列出架构、上下文长度、层数、专家数、量化与体积，并标明内嵌 MTP 权重在本引擎是否可用、视觉投影件是否匹配；Llama.cpp 与分支配置都有这一行。
+
+### 修复
+
+- **数值输入过滤覆盖全部配置界面**：Llama.cpp 配置的基础区（端口、线程、Fit 余量、温度等采样项、推理预算）与高级区所有数值参数同样只接受数字输入（浮点可输小数点、支持 -1 的参数保留负号），字母一律打不进去；与分支配置（PolyStrata / NInfer）同口径。
+- **配置编辑器的数值输入框不再吃字母**：分支配置（PolyStrata / NInfer）里所有数值参数只接受数字输入，浮点参数可输入小数点，支持 -1 的参数（输出上限、随机种子等）保留负号；此前误输字母会被静默丢弃、重新打开时值凭空消失。
+- **预检结果不再是一次性的**：上次的预检结论与检查时间重启后仍在（配置内容变了会自动作废重查）；点行内的警告图标打开配置会直接落到第一处问题，未解决的问题字段保持高亮、改好一处即撤一处，不再需要手动点「去修改」或再点一次保存才知道改对了。
+
+### 变更
+
+- **悬停提示更克制**：提示文本改为锚定在元素上方（不再跟随鼠标移动），且悬停约半秒才出现——滑过页面不再到处弹提示，停留才会显示。技能卡片的备注预览同步这一行为。
+- **技能包筛选改三态**：管理技能包弹窗的「未入包」按钮升级为「全部 → 包内 → 包外」循环切换，按钮上直接显示当前所处状态；「包内」只看当前所选包的成员，「包外」只看未入任何包的技能，切换包时筛选保持不变。
+- **时间一律按分钟**：Llama.cpp 配置的「超时」从秒改为分钟显示与输入（默认 60 分钟），与空闲卸载同口径；内部换算自动完成，存量配置与启动行为不变。
+- **配置编辑器更好认**：模型选择独占一行，别名挪到配置名称旁；模型下拉与输入框悬停可看到完整路径。
+- **运行时区块标题跟着引擎走**：NInfer / PolyStrata 页显示各自的运行时名称，不再统一叫「分支运行时」。
 
 ## [v0.7.0] - 2026-11-13
 
@@ -503,4 +527,4 @@ import{u as h,j as n}from"./lib-S8l7av3K.js";import{D as u,g as d,m as A}from"./
 ### 新增
 
 - 首次正式发版（Windows x64 / macOS x86_64 + aarch64，CI 签名构建）；私有仓库支持（gh 优先 + PAT 兜底）；从仓库 URL 安装单个技能；打包前全量审查（i18n 死 key 清理 / 依赖升级 / 供应链审计）。
-`;function g(s,r){const e=[];let t=null,a=null;for(const i of s.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){t=null;continue}t={version:l[1],date:(l[2]??"").replace("T"," "),sections:[]},e.push(t),a=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&t){a||(a={title:r,items:[]},t.sections.push(a)),a.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&t&&(a={title:c[1].trim(),items:[]},t.sections.push(a))}return e}function I(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function p({releases:s}){return n.jsx(n.Fragment,{children:s.map(r=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:r.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:r.date})]}),r.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,a)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:I(t.text)},a))})]},e.title))]},r.version))})}function G({locale:s}){if(s==="en"){const e=g(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(f,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(p,{releases:e})]})}const r=g(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(p,{releases:r})]})}function x(){const s=h();return n.jsx(u,{page:d("changelog",s),toc:[],children:n.jsx(G,{locale:s})})}A(n.jsx(x,{}));
+`;function p(s,a){const e=[];let t=null,r=null;for(const i of s.split(/\r?\n/)){const l=i.match(/^## \[(.+?)\](?:\s*-\s*(\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?))?\s*$/);if(l){if(l[1]==="未发布"||l[1]==="Unreleased"){t=null;continue}t={version:l[1],date:(l[2]??"").replace("T"," "),sections:[]},e.push(t),r=null;continue}const o=i.match(/^(\s*)- (.+)/);if(o&&t){r||(r={title:a,items:[]},t.sections.push(r)),r.items.push({text:o[2],sub:o[1].length>=2});continue}const c=i.match(/^###\s+(.+)/);c&&t&&(r={title:c[1].trim(),items:[]},t.sections.push(r))}return e}function I(s){return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((e,t)=>e.startsWith("**")&&e.endsWith("**")?n.jsx("strong",{children:e.slice(2,-2)},t):e.startsWith("`")&&e.endsWith("`")?n.jsx("code",{className:"rounded bg-soft px-1 py-px font-mono text-[0.85em]",children:e.slice(1,-1)},t):e)}function g({releases:s}){return n.jsx(n.Fragment,{children:s.map(a=>n.jsxs("section",{className:"mt-10 border-t border-line pt-6 first:mt-8 first:border-t-0 first:pt-0",children:[n.jsxs("h2",{className:"flex flex-wrap items-baseline gap-3",children:[n.jsx("span",{className:"font-mono text-brand",children:a.version}),n.jsx("span",{className:"text-sm font-normal text-fg-muted",children:a.date})]}),a.sections.map(e=>n.jsxs("div",{className:"mt-4",children:[n.jsx("h3",{children:e.title}),n.jsx("ul",{children:e.items.map((t,r)=>n.jsx("li",{className:t.sub?"ml-5 list-[circle]":"",children:I(t.text)},r))})]},e.title))]},a.version))})}function G({locale:s}){if(s==="en"){const e=p(m,"Changes");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["Always install from the"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"latest release page"}),". The app also checks for updates automatically on startup."]}),n.jsx(A,{variant:"info",title:"Release notes are written in Chinese",children:"Entries below are parsed from the project changelog and kept in the original Chinese. UI chrome on this page is English."}),n.jsx(g,{releases:e})]})}const a=p(m,"变更");return n.jsxs(n.Fragment,{children:[n.jsxs("p",{children:["安装包始终以"," ",n.jsx("a",{href:"https://github.com/ErgeAIA/updates-dist",target:"_blank",rel:"noreferrer",children:"最新发布页"})," ","为准；应用内会在启动时自动检查更新。"]}),n.jsx(g,{releases:a})]})}function x(){const s=h();return n.jsx(u,{page:d("changelog",s),toc:[],children:n.jsx(G,{locale:s})})}f(n.jsx(x,{}));
